@@ -8,8 +8,8 @@ xonek2 = require '../src/xonek2'
 
 
 emitEventTest = (component, output, msg, done) ->
-  component.on 'update', (check) ->
-    assert.equal msg[2], check
+  component.on 'update', (check, msg_back) ->
+    assert.equal msg[2], msg_back[2]
     done()
 
   output.sendMessage msg
@@ -91,7 +91,7 @@ describe 'XONE:K2 api', ->
 
     it 'emits events for endless knob (turn left)', (done) ->
       knob = controller.channels[3].endless_knob
-      knob.on 'update', (check) ->
+      knob.on 'update', (check, msg) ->
         assert.equal -1, check
         done()
 

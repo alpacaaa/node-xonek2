@@ -1,18 +1,11 @@
 
 
-{ EventEmitter } = require 'events'
+Component = require './base-component'
 
 
-class Fader extends EventEmitter
-  value: 0
-
+class Fader extends Component
   constructor: (channel) ->
     @channel  = channel
     @position = [190, 16 + channel]
-
-  updateValue: (value) ->
-    @value = value
-    @emit 'update', value
-
 
 module.exports = Fader

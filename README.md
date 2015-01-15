@@ -66,7 +66,8 @@ controller.utils.endless_knobs[0]
 
 ### Usage
 
-All the components (except for leds) emit events.
+All the components (except for leds) emit events.  
+The original midi message is sent along, in case you want to route it to a virtual midi device or something.
 
 ##### Buttons
 
@@ -87,8 +88,8 @@ button.on('release', function() {
 ```javascript
 var knob = controller.channels[3].knobs[1]; // The second knob on the last channel
 
-knob.on('update', function(value) {
-  console.log('Knob twisted: the value is (0-127): ' + value);
+knob.on('update', function(value, midi_msg) {
+  console.log('Knob twisted: the value is (0-1): ' + value);
 });
 ```
 
@@ -98,8 +99,8 @@ knob.on('update', function(value) {
 ```javascript
 var fader = controller.channels[1].fader; // The fader on the second channel
 
-fader.on('update', function(value) {
-  console.log('Fader moved: the value is (0-127): ' + value);
+fader.on('update', function(value, midi_msg) {
+  console.log('Fader moved: the value is (0-1): ' + value);
 });
 ```
 

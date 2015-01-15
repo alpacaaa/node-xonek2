@@ -1,10 +1,9 @@
 
-{ EventEmitter } = require 'events'
 Button = require './button'
+Component = require './base-component'
 
 
-class Knob extends EventEmitter
-  value: 0
+class Knob extends Component
   button: null
   channel: null
   position: null
@@ -13,11 +12,6 @@ class Knob extends EventEmitter
     @channel  = channel
     @position = knobPosition channel, knob
     @button = new Button channel, knob
-
-  updateValue: (value) ->
-    @value = value
-    @emit 'update', value
-
 
 
 knobPosition = (channel, position) ->

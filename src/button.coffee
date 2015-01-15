@@ -1,8 +1,8 @@
 
-{ EventEmitter } = require 'events'
+Component = require './base-component'
 Led = require './led'
 
-class Button extends EventEmitter
+class Button extends Component
   is_pressed: false
 
   constructor: (channel, button) ->
@@ -11,10 +11,10 @@ class Button extends EventEmitter
     @position_pressed  = [158, position]
     @position_released = [142, position]
 
-  updateValue: (value) ->
-    event = if value == 127 then 'press' else 'release'
+  updateValue: (value, msg) ->
+    event = if value == 1 then 'press' else 'release'
     @is_pressed = event == 'press'
-    @emit event
+    @emit event, msg
 
 
 module.exports = Button

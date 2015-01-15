@@ -137,7 +137,8 @@ class XONEK2
       component = @components[position]
       return unless component
 
-      component.updateValue msg[2]
+      value = msg[2] / 127
+      component.updateValue value, msg
 
   reset_leds: ->
     output = midi_connection.output

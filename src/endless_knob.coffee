@@ -1,10 +1,10 @@
 
-{ EventEmitter } = require 'events'
+Component = require './base-component'
 Button = require './button'
 Led = require './led'
 
 
-class EndlessKnob extends EventEmitter
+class EndlessKnob extends Component
 
   led: null
   button: null
@@ -23,9 +23,10 @@ class EndlessKnob extends EventEmitter
     return unless options.led
     @led = new Led 4 + channel, 0
 
-  updateValue: (value) ->
-    value = -1 if value == 127
-    @emit 'update', value
+  updateValue: (value, msg) ->
+    ret = 1
+    ret = -1 if value == 1
+    @emit 'update', ret, msg
 
 
 module.exports = EndlessKnob
